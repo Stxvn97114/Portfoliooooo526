@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Steeve BARTHEL — Portfolio BUT MMI</title>
+    <meta name="description" content="Portfolio de Steeve BARTHEL, étudiant en BUT MMI, passionné de sport, design et développement web.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ── VARIABLES ── */
+        :root {
+            --bg: #050a0f;
+            --bg2: #080e18;
+            --txt: #c8d8e8;
+            --brand: #00d4ff;
+            --brand2: #0066ff;
+            --accent: #ff6b00;
+            --card: #0a1525;
+            --border: #1a3050;
+            --glow: rgba(0,212,255,0.3);
+            --focus: #ffe040;
+        }
+        html.theme-light {
+            --bg: #f0f4f8; --bg2: #e8eef5; --txt: #1a2030;
+            --brand: #0066cc; --brand2: #0044aa; --accent: #e05500;
+            --card: #ffffff; --border: #c0d0e0; --glow: rgba(0,102,204,0.2);
+            --focus: #d4800a;
+        }
+
+        /* ── RESET ── */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg); color: var(--txt);
+            line-height: 1.6; transition: background 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px; z-index: 0; pointer-events: none;
+        }
+        html.theme-light body::before {
+            background-image:
+                linear-gradient(rgba(0,102,204,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,102,204,0.05) 1px, transparent 1px);
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: var(--brand); text-decoration: none; }
+
+        /* ── FOCUS VISIBLE (accessibilité clavier) ── */
+        :focus-visible {
+            outline: 3px solid var(--focus);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+        /* Skip link */
+        .skip-link {
+            position: absolute; top: -100px; left: 1rem;
+            background: var(--focus); color: #000;
+            padding: 0.6rem 1.2rem; border-radius: 4px;
+            font-family: 'Orbitron', sans-serif; font-size: 0.75rem;
+            font-weight: 700; letter-spacing: 2px; z-index: 9999;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 1rem; }
+
+        /* ── HEADER ── */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 2rem;
+            background: rgba(5,10,15,0.92);
+            border-bottom: 1px solid var(--brand);
+            box-shadow: 0 0 20px var(--glow);
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+        html.theme-light header { background: rgba(240,244,248,0.92); }
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem; font-weight: 900; letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--brand), var(--brand2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-right { display: flex; align-items: center; gap: 1.5rem; }
+
+        /* ── NAV ── */
+        nav ul { display: flex; gap: 0.4rem; list-style: none; }
+        nav a {
+            padding: 0.45rem 0.9rem; color: var(--txt); text-decoration: none;
+            font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            border: 1px solid transparent; border-radius: 4px; transition: all 0.3s;
+            display: block;
+        }
+        nav a:hover, nav a.actif, nav a[aria-current="page"] {
+            color: var(--brand); border-color: var(--brand);
+            box-shadow: 0 0 12px var(--glow), inset 0 0 12px rgba(0,212,255,0.05);
+        }
+
+        /* ── THEME BTN ── */
+        .theme-btn {
+            background: none; border: 1px solid var(--border);
+            color: var(--brand); border-radius: 50%;
+            width: 36px; height: 36px; font-size: 0.95rem;
+            cursor: pointer; transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .theme-btn:hover { border-color: var(--brand); box-shadow: 0 0 12px var(--glow); }
+
+        /* ── BURGER ── */
+        .burger {
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; padding: 7px; background: none;
+            border: 1px solid var(--border); border-radius: 4px;
+        }
+        .burger span { width: 20px; height: 2px; background: var(--brand); border-radius: 2px; transition: all 0.3s; }
+
+        /* ── OVERLAY ── */
+        .overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.7); z-index: 998;
+        }
+        .overlay.show { display: block; }
+
+        /* ── MAIN ── */
+        main { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+        section { margin-bottom: 5rem; padding-top: 2rem; }
+
+        /* ── SECTION HEADERS ── */
+        .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700;
+            letter-spacing: 4px; text-transform: uppercase;
+            color: var(--brand); text-shadow: 0 0 20px var(--glow);
+        }
+        .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--brand), transparent); }
+        .section-tag { font-family: 'Share Tech Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 2px; }
+
+        /* ── REVEAL ANIMATION ── */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── HERO ── */
+        #hero { min-height: 78vh; display: flex; align-items: center; gap: 4rem; padding: 4rem 0; }
+        .hero-text { flex: 1; }
+        .hero-tag { font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: var(--accent); letter-spacing: 3px; margin-bottom: 1rem; display: block; }
+        .hero-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 3.8rem);
+            font-weight: 900; line-height: 1.1; letter-spacing: 2px; margin-bottom: 0.5rem;
+        }
+        .hero-name span {
+            background: linear-gradient(135deg, var(--brand), var(--brand2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-sub { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; color: var(--brand); letter-spacing: 6px; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0.8; }
+        .hero-desc { font-size: 1.05rem; line-height: 1.8; opacity: 0.85; max-width: 470px; margin-bottom: 2rem; }
+        .hero-stats { display: flex; gap: 2rem; margin-bottom: 2.5rem; }
+        .stat-num { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--brand); display: block; }
+        .stat-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; }
+        .hero-image-wrap { flex-shrink: 0; position: relative; }
+        .hero-image-wrap::before {
+            content: ''; position: absolute; inset: -8px; border-radius: 16px;
+            background: linear-gradient(135deg, var(--brand), var(--brand2), transparent, var(--accent));
+            z-index: -1; animation: rotateBorder 4s linear infinite;
+        }
+        @keyframes rotateBorder { 100% { filter: hue-rotate(360deg); } }
+        .hero-image-wrap img { width: 220px; height: 280px; object-fit: cover; border-radius: 12px; }
+        .scan-line {
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--brand), transparent);
+            animation: scanDown 3s linear infinite; pointer-events: none;
+        }
+        @keyframes scanDown { 0% { top:0; opacity:1; } 80% { opacity:1; } 100% { top:100%; opacity:0; } }
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-primary, .btn-secondary {
+            font-family: 'Orbitron', sans-serif; font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase; padding: 0.75rem 1.6rem;
+            border-radius: 4px; text-decoration: none; display: inline-block; transition: all 0.3s;
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--brand), var(--brand2)); color: #050a0f; border: none; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--glow); }
+        .btn-secondary { background: transparent; color: var(--brand); border: 1px solid var(--brand); }
+        .btn-secondary:hover { background: rgba(0,212,255,0.1); transform: translateY(-2px); box-shadow: 0 0 20px var(--glow); }
+
+        /* ── COMPÉTENCES ── */
+        .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+        .skill-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.2rem; transition: all 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .skill-card::before {
+            content: ''; position: absolute; top:0; left:-100%; width:100%; height:100%;
+            background: linear-gradient(90deg, transparent, rgba(0,212,255,0.06), transparent);
+            transition: left 0.5s;
+        }
+        .skill-card:hover::before { left: 100%; }
+        .skill-card:hover { border-color: var(--brand); box-shadow: 0 0 20px var(--glow); transform: translateY(-4px); }
+        .skill-card h3 { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--brand); margin-bottom: 0.3rem; margin-top: 0.4rem; }
+        .skill-icon { font-size: 1.6rem; color: var(--brand); display: block; }
+        .skill-card p { font-size: 0.85rem; opacity: 0.6; letter-spacing: 1px; }
+        .skill-bar { width: 100%; height: 3px; background: var(--border); border-radius: 3px; margin-top: 0.8rem; overflow: hidden; }
+        .skill-fill { height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand2)); border-radius: 3px; width: 0; transition: width 1.5s ease; }
+
+        /* ── PROJETS ── */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.5rem; }
+        .project-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 8px; overflow: hidden; transition: all 0.3s;
+            position: relative;
+        }
+        .project-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px var(--glow); border-color: var(--brand); }
+        .project-img-wrap { position: relative; overflow: hidden; background: #020810; display: flex; align-items: center; justify-content: center; min-height: 160px; }
+        .project-img-wrap img { width: 100%; max-height: 200px; object-fit: cover; transition: transform 0.4s; }
+        .project-card:hover .project-img-wrap img { transform: scale(1.05); }
+        .project-overlay { position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(5,10,15,0.85)); pointer-events: none; }
+        .project-body { padding: 1.2rem; }
+        .project-tag {
+            font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: var(--accent);
+            letter-spacing: 2px; text-transform: uppercase;
+            display: inline-block; border: 1px solid var(--accent);
+            padding: 0.2rem 0.6rem; border-radius: 3px; margin-bottom: 0.6rem;
+        }
+        .project-card h3 { font-family: 'Orbitron', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; color: var(--brand); margin-bottom: 0.5rem; }
+        .project-card p { font-size: 0.9rem; opacity: 0.7; line-height: 1.6; }
+        .logo-display { background: #111; padding: 2rem; display: flex; align-items: center; justify-content: center; min-height: 160px; }
+        .logo-display img { max-width: 220px; max-height: 110px; object-fit: contain; }
+
+        /* ── CONTACT ── */
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-item {
+            display: flex; align-items: center; gap: 1rem;
+            padding: 1rem; background: var(--card); border: 1px solid var(--border);
+            border-radius: 8px; text-decoration: none; color: var(--txt); transition: all 0.3s;
+        }
+        .contact-item:hover { border-color: var(--brand); box-shadow: 0 0 15px var(--glow); }
+        .contact-icon {
+            width: 40px; height: 40px; border-radius: 8px;
+            background: rgba(0,212,255,0.1); border: 1px solid var(--brand);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--brand); font-size: 1rem; flex-shrink: 0;
+        }
+        /* Couleurs spécifiques aux réseaux sociaux */
+        .contact-item.instagram:hover { border-color: #e1306c; box-shadow: 0 0 15px rgba(225,48,108,0.35); }
+        .contact-item.instagram:hover .contact-icon { border-color: #e1306c; color: #e1306c; background: rgba(225,48,108,0.1); }
+        .contact-item.tiktok:hover { border-color: #69C9D0; box-shadow: 0 0 15px rgba(105,201,208,0.35); }
+        .contact-item.tiktok:hover .contact-icon { border-color: #69C9D0; color: #69C9D0; background: rgba(105,201,208,0.1); }
+
+        .contact-label { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; font-family: 'Share Tech Mono', monospace; }
+        .contact-value { font-size: 0.9rem; font-weight: 500; }
+        .contact-form-btn {
+            display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+            padding: 2rem; background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,102,255,0.08));
+            border: 1px solid var(--brand); border-radius: 8px;
+            text-decoration: none; color: var(--brand);
+            font-family: 'Orbitron', sans-serif; font-size: 0.75rem; font-weight: 700;
+            letter-spacing: 3px; text-transform: uppercase; transition: all 0.3s;
+        }
+        .contact-form-btn:hover { background: linear-gradient(135deg, rgba(0,212,255,0.18), rgba(0,102,255,0.18)); box-shadow: 0 0 30px var(--glow); transform: translateY(-3px); }
+
+        /* ── FORMULAIRE ── */
+        .form-section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-top: 2rem; }
+        .form-section h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 3px; color: var(--brand); margin-bottom: 1.5rem; text-transform: uppercase; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.2rem; }
+        .form-group label { font-family: 'Share Tech Mono', monospace; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--brand); opacity: 0.85; }
+        .form-group label .req { color: var(--accent); margin-left: 3px; }
+        .form-group input,
+        .form-group textarea {
+            padding: 0.7rem 1rem; background: var(--bg); color: var(--txt);
+            border: 1px solid var(--border); border-radius: 6px;
+            font-family: 'Rajdhani', sans-serif; font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.18);
+        }
+        .form-group input.error, .form-group textarea.error { border-color: #f87171; }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .error-msg { font-size: 0.75rem; color: #f87171; letter-spacing: 1px; display: none; }
+        .error-msg.visible { display: block; }
+        .form-submit {
+            font-family: 'Orbitron', sans-serif; font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            background: linear-gradient(135deg, var(--brand), var(--brand2));
+            color: #050a0f; border: none; padding: 0.85rem 2rem;
+            border-radius: 4px; cursor: pointer; transition: all 0.3s;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--glow); }
+        .form-success {
+            margin-top: 1rem; padding: 1rem; background: rgba(0,212,255,0.1);
+            border: 1px solid var(--brand); border-radius: 6px;
+            color: var(--brand); font-size: 0.9rem; letter-spacing: 1px;
+            display: none;
+        }
+        .form-success.visible { display: block; }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center; padding: 2rem;
+            border-top: 1px solid var(--border);
+            font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+            letter-spacing: 3px; opacity: 0.4; position: relative; z-index: 1;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.2rem; }
+            .burger { display: flex; }
+            nav {
+                position: fixed; top: 0; right: -280px; width: 280px; height: 100vh;
+                background: var(--bg2); border-left: 1px solid var(--border);
+                z-index: 999; padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease; display: flex; flex-direction: column;
+            }
+            nav.open { right: 0; }
+            nav ul { flex-direction: column; gap: 0.5rem; }
+            nav a { padding: 0.8rem 1rem; font-size: 0.75rem; }
+            #hero { flex-direction: column-reverse; min-height: auto; gap: 2rem; padding: 3rem 0; }
+            .hero-image-wrap img { width: 160px; height: 200px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            .hero-stats { gap: 1.2rem; }
+            .stat-num { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <header role="banner">
+        <div class="logo-text" aria-label="Steeve Barthel, portfolio">Steeve Barthel</div>
+        <div class="header-right">
+            <button class="theme-btn" id="themeBtn" aria-label="Basculer vers le thème clair">☀️</button>
+            <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="main-nav" aria-label="Navigation principale">
+                <ul role="menubar">
+                    <li role="none"><a href="#hero" role="menuitem" class="actif" aria-current="page">Accueil</a></li>
+                    <li role="none"><a href="#competences" role="menuitem">Skills</a></li>
+                    <li role="none"><a href="#projets" role="menuitem">Projets</a></li>
+                    <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- ══ SECTION 1 — HERO ══ -->
+        <section id="hero" aria-labelledby="hero-heading">
+            <div class="hero-text">
+                <span class="hero-tag" aria-hidden="true">// ÉTUDIANT BUT MMI</span>
+                <h1 id="hero-heading" class="hero-name">Steeve<br><span>BARTHEL</span></h1>
+                <p class="hero-sub" aria-label="Formation : Métiers du Multimédia et de l'Internet">Multimédia &amp; Internet</p>
+                <p class="hero-desc">Passionné de sport et d'informatique, je réunis mes deux passions pour créer des expériences numériques mémorables. Football, jeux vidéo, design et développement web.</p>
+                <div class="hero-stats" aria-label="Statistiques rapides">
+                    <div class="stat">
+                        <span class="stat-num" aria-label="3 années de formation">3</span>
+                        <span class="stat-label" aria-hidden="true">Années BUT</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" aria-label="2 projets réalisés">2</span>
+                        <span class="stat-label" aria-hidden="true">Projets</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" aria-label="3 compétences clés">3</span>
+                        <span class="stat-label" aria-hidden="true">Skills</span>
+                    </div>
+                </div>
+                <div class="hero-ctas">
+                    <a href="#projets" class="btn-primary">Voir mes projets</a>
+                    <a href="#contact" class="btn-secondary">Me contacter</a>
+                </div>
+            </div>
+            <div class="hero-image-wrap" aria-hidden="true">
+                <div class="scan-line"></div>
+                <img src="IMG_4783.png" alt="Portrait de Steeve BARTHEL, étudiant en BUT MMI, en chemise blanche" width="220" height="280">
+            </div>
+        </section>
+
+        <!-- ══ SECTION 2 — COMPÉTENCES ══ -->
+        <section id="competences" class="reveal" aria-labelledby="comp-heading">
+            <div class="section-header">
+                <span class="section-tag" aria-hidden="true">02 /</span>
+                <h2 id="comp-heading">Compétences</h2>
+                <div class="section-line" aria-hidden="true"></div>
+            </div>
+            <div class="skills-grid" role="list" aria-label="Liste des compétences">
+                <article class="skill-card" role="listitem">
+                    <span class="skill-icon" aria-hidden="true"><i class="fas fa-code"></i></span>
+                    <h3>HTML / CSS</h3>
+                    <p>Niveau débutant</p>
+                    <div class="skill-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-label="Niveau HTML/CSS : 45%">
+                        <div class="skill-fill" data-pct="45"></div>
+                    </div>
+                </article>
+                <article class="skill-card" role="listitem">
+                    <span class="skill-icon" aria-hidden="true"><i class="fas fa-drafting-compass"></i></span>
+                    <h3>Design</h3>
+                    <p>Figma / Canva</p>
+                    <div class="skill-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Niveau design : 60%">
+                        <div class="skill-fill" data-pct="60"></div>
+                    </div>
+                </article>
+                <article class="skill-card" role="listitem">
+                    <span class="skill-icon" aria-hidden="true"><i class="fas fa-video"></i></span>
+                    <h3>Montage vidéo</h3>
+                    <p>CapCut / DaVinci</p>
+                    <div class="skill-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" aria-label="Niveau montage : 55%">
+                        <div class="skill-fill" data-pct="55"></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    <!-- ══ SECTION 3 — PROJETS ══ -->
+<section id="projets" class="reveal" aria-labelledby="proj-heading">
+    <div class="section-header">
+        <span class="section-tag" aria-hidden="true">03 /</span>
+        <h2 id="proj-heading">Projets</h2>
+        <div class="section-line" aria-hidden="true"></div>
+    </div>
+
+    <div class="projects-grid">
+
+        <!-- Projet 1 -->
+        <article class="project-card" aria-label="Projet : Affiche Simpsons">
+            <div class="project-img-wrap">
+                <img src="14_02.png"
+                     alt="Simpsons : Le film créé en 2007"
+                     width="400" height="560"
+                     onclick="openModal(this)">
+                <div class="project-overlay"></div>
+            </div>
+            <div class="project-body">
+                <span class="project-tag">Vidéo</span>
+                <h3>Affiche — Simpsons</h3>
+                <p>Affiche minimaliste pour un film.</p>
+            </div>
+        </article>
+
+        <!-- Projet 2 -->
+        <article class="project-card" aria-label="Projet : Logo Green Pitch">
+            <div class="project-img-wrap logo-display">
+                <img src="Capture d'écran 2026-05-12 092155.png"
+                     alt="Logo Green Pitch"
+                     width="220" height="110"
+                     onclick="openModal(this)">
+                     </div>
+            <div class="project-body">
+                <span class="project-tag">Design</span>
+                <h3>Logo Club Sportif — Green Pitch</h3>
+                <p>Création de l'identité visuelle <strong>Green Pitch</strong> — logo pour club de football, réalisé sur Canva.</p>
+            </div>
+        </article>
+                     
+        <!-- Projet 3 -->
+        <article class="project-card" aria-label="Projet : Montage Football">
+            <div class="project-img-wrap">
+                <img src="IMG_7021.webp"
+                     alt="Montage football en cours"
+                     width="400" height="560"
+                     onclick="openModal(this)">
+                    </div>
+            <div class="project-body">
+                <span class="project-tag">En cours</span>
+                <h3>Montage Football</h3>   
+                <p>Edit vidéo football en cours de réalisation.</p>
+            </div>
+        </article>
+            
+
+    </div>
+</section>
+
+<!-- MODAL IMAGE -->
+<div id="imgModal" style="display:none; position:fixed; z-index:999; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); text-align:center;">
+    
+    <span onclick="closeModal()" 
+          style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">
+        &times;
+    </span>
+
+    <img id="modalImg" style="margin-top:50px; max-width:90%; max-height:90%;">
+</div>
+
+<!-- SCRIPT -->
+<script>
+function openModal(img) {
+    document.getElementById("imgModal").style.display = "block";
+    document.getElementById("modalImg").src = img.src;
+}
+
+function closeModal() {
+    document.getElementById("imgModal").style.display = "none";
+}
+
+document.getElementById("imgModal").onclick = function(e) {
+    if (e.target.id === "imgModal") {
+        closeModal();
+    }
+}
+</script>
+        <!-- ══ SECTION 4 — CONTACT ══ -->
+        <section id="contact" class="reveal" aria-labelledby="contact-heading">
+            <div class="section-header">
+                <span class="section-tag" aria-hidden="true">04 /</span>
+                <h2 id="contact-heading">Contact</h2>
+                <div class="section-line" aria-hidden="true"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <a href="mailto:steevebarthel@gmail.com" class="contact-item" aria-label="Envoyer un email à steevebarthel@gmail.com">
+                        <div class="contact-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <div class="contact-label">Email</div>
+                            <div class="contact-value">steevebarthel@gmail.com</div>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/steeve-barthel-a54529389/" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="Profil LinkedIn de Steeve BARTHEL (ouvre un nouvel onglet)">
+                        <div class="contact-icon" aria-hidden="true"><i class="fab fa-linkedin"></i></div>
+                        <div>
+                            <div class="contact-label">LinkedIn</div>
+                            <div class="contact-value">Steeve BARTHEL</div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/stxve_971/" target="_blank" rel="noopener noreferrer" class="contact-item instagram" aria-label="Profil Instagram de Steeve (ouvre un nouvel onglet)">
+                        <div class="contact-icon" aria-hidden="true"><i class="fab fa-instagram"></i></div>
+                        <div>
+                            <div class="contact-label">Instagram</div>
+                            <div class="contact-value">@stxve_971</div>
+                        </div>
+                    </a>
+                    <a href="https://www.tiktok.com/@stxvn971" target="_blank" rel="noopener noreferrer" class="contact-item tiktok" aria-label="Profil TikTok de Steeve (ouvre un nouvel onglet)">
+                        <div class="contact-icon" aria-hidden="true"><i class="fab fa-tiktok"></i></div>
+                        <div>
+                            <div class="contact-label">TikTok</div>
+                            <div class="contact-value">@stxvn971</div>
+                        </div>
+                    </a>
+                    <a href="tel:+590690981979" class="contact-item" aria-label="Appeler Steeve Barthel">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <div class="contact-label">Téléphone</div>
+                            <div class="contact-value">0690 98 19 79</div>
+                        </div>
+                    </a>
+                </div>
+                <a href="contact.html" class="contact-form-btn" aria-label="Accéder au formulaire de contact complet">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    Formulaire de contact
+                </a>
+            </div>
+
+    <footer role="contentinfo">
+        <p>© <span id="annee"></span> STEEVE BARTHEL // BUT MMI // TOUS DROITS RÉSERVÉS</p>
+    </footer>
+
+    <script>
+    // ── Année ──
+    document.getElementById('annee').textContent = new Date().getFullYear();
+
+    // ── Thème ──
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    function applyTheme(light) {
+        html.classList.toggle('theme-light', light);
+        themeBtn.textContent = light ? '🌙' : '☀️';
+        themeBtn.setAttribute('aria-label', light ? 'Basculer vers le thème sombre' : 'Basculer vers le thème clair');
+    }
+    applyTheme(localStorage.getItem('theme') === 'light');
+    themeBtn.addEventListener('click', () => {
+        const isLight = !html.classList.contains('theme-light');
+        applyTheme(isLight);
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // ── Burger ──
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mainNav = document.getElementById('main-nav');
+    const overlay = document.getElementById('overlay');
+    function toggleNav(open) {
+        const isOpen = open !== undefined ? open : !mainNav.classList.contains('open');
+        mainNav.classList.toggle('open', isOpen);
+        overlay.classList.toggle('show', isOpen);
+        burgerBtn.setAttribute('aria-expanded', String(isOpen));
+        burgerBtn.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu de navigation');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    burgerBtn.addEventListener('click', () => toggleNav());
+    overlay.addEventListener('click', () => toggleNav(false));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleNav(false); });
+    mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleNav(false)));
+
+    // ── Navigation clavier avec flèches dans le menu ──
+    const navItems = Array.from(mainNav.querySelectorAll('a[role="menuitem"]'));
+    navItems.forEach((item, idx) => {
+        item.addEventListener('keydown', e => {
+            let newIdx = idx;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                newIdx = (idx + 1) % navItems.length;
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                newIdx = (idx - 1 + navItems.length) % navItems.length;
+            } else if (e.key === 'Home') {
+                e.preventDefault(); newIdx = 0;
+            } else if (e.key === 'End') {
+                e.preventDefault(); newIdx = navItems.length - 1;
+            }
+            if (newIdx !== idx) navItems[newIdx].focus();
+        });
+    });
+
+    // ── Nav active on click ──
+    navItems.forEach(a => {
+        a.addEventListener('click', function() {
+            navItems.forEach(l => { l.classList.remove('actif'); l.removeAttribute('aria-current'); });
+            this.classList.add('actif');
+            this.setAttribute('aria-current', 'page');
+        });
+    });
+
+    // ── Scroll reveal + skill bars ──
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                e.target.querySelectorAll('.skill-fill').forEach(bar => {
+                    const pct = bar.getAttribute('data-pct');
+                    if (pct) bar.style.width = pct + '%';
+                });
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+    // ── Validation formulaire ──
+    const form = document.getElementById('contact-form');
+    const fields = {
+        nom:     { el: document.getElementById('f-nom'),     errEl: document.getElementById('f-nom-error') },
+        email:   { el: document.getElementById('f-email'),   errEl: document.getElementById('f-email-error') },
+        message: { el: document.getElementById('f-message'), errEl: document.getElementById('f-message-error') }
+    };
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function validateField(key) {
+        const { el, errEl } = fields[key];
+        const val = el.value.trim();
+        let msg = '';
+        if (!val) msg = 'Ce champ est obligatoire.';
+        else if (key === 'email' && !emailRe.test(val)) msg = 'Adresse email invalide.';
+        else if (key === 'nom' && val.length < 2) msg = 'Le nom doit contenir au moins 2 caractères.';
+        else if (key === 'message' && val.length < 10) msg = 'Le message doit contenir au moins 10 caractères.';
+        if (msg) {
+            errEl.textContent = msg; errEl.classList.add('visible');
+            el.classList.add('error'); el.setAttribute('aria-invalid', 'true');
+            return false;
+        }
+        errEl.textContent = ''; errEl.classList.remove('visible');
+        el.classList.remove('error'); el.setAttribute('aria-invalid', 'false');
+        return true;
+    }
+    Object.keys(fields).forEach(key => {
+        fields[key].el.addEventListener('blur', () => validateField(key));
+        fields[key].el.addEventListener('input', () => {
+            if (fields[key].el.classList.contains('error')) validateField(key);
+        });
+    });
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const ok = Object.keys(fields).every(validateField);
+        if (ok) {
+            document.getElementById('form-success').classList.add('visible');
+            form.reset();
+            Object.values(fields).forEach(({ el, errEl }) => {
+                el.classList.remove('error'); el.setAttribute('aria-invalid', 'false');
+                errEl.classList.remove('visible');
+            });
+            setTimeout(() => document.getElementById('form-success').classList.remove('visible'), 5000);
+        }
+    });
+    </script>
+</body>
+</html>
