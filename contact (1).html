@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact — Steeve BARTHEL</title>
+    <meta name="description" content="Contactez Steeve BARTHEL, étudiant en BUT MMI, pour toute collaboration ou question.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ── VARIABLES ── */
+        :root {
+            --bg: #050a0f;
+            --bg2: #080e18;
+            --txt: #c8d8e8;
+            --brand: #00d4ff;
+            --brand2: #0066ff;
+            --accent: #ff6b00;
+            --card: #0a1525;
+            --border: #1a3050;
+            --glow: rgba(0,212,255,0.3);
+            --focus: #ffe040;
+        }
+        html.theme-light {
+            --bg: #f0f4f8; --bg2: #e8eef5; --txt: #1a2030;
+            --brand: #0066cc; --brand2: #0044aa; --accent: #e05500;
+            --card: #ffffff; --border: #c0d0e0; --glow: rgba(0,102,204,0.2);
+            --focus: #d4800a;
+        }
+
+        /* ── RESET ── */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: var(--bg); color: var(--txt);
+            line-height: 1.6; transition: background 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px; z-index: 0; pointer-events: none;
+        }
+        html.theme-light body::before {
+            background-image:
+                linear-gradient(rgba(0,102,204,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,102,204,0.05) 1px, transparent 1px);
+        }
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: var(--brand); text-decoration: none; }
+
+        /* ── FOCUS ── */
+        :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+        .skip-link {
+            position: absolute; top: -100px; left: 1rem;
+            background: var(--focus); color: #000;
+            padding: 0.6rem 1.2rem; border-radius: 4px;
+            font-family: 'Orbitron', sans-serif; font-size: 0.75rem;
+            font-weight: 700; letter-spacing: 2px; z-index: 9999;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 1rem; }
+
+        /* ── HEADER ── */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 2rem;
+            background: rgba(5,10,15,0.92);
+            border-bottom: 1px solid var(--brand);
+            box-shadow: 0 0 20px var(--glow);
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+        html.theme-light header { background: rgba(240,244,248,0.92); }
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem; font-weight: 900; letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--brand), var(--brand2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-right { display: flex; align-items: center; gap: 1.5rem; }
+
+        /* ── NAV ── */
+        nav ul { display: flex; gap: 0.4rem; list-style: none; }
+        nav a {
+            padding: 0.45rem 0.9rem; color: var(--txt); text-decoration: none;
+            font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            border: 1px solid transparent; border-radius: 4px; transition: all 0.3s;
+            display: block;
+        }
+        nav a:hover, nav a.actif {
+            color: var(--brand); border-color: var(--brand);
+            box-shadow: 0 0 12px var(--glow), inset 0 0 12px rgba(0,212,255,0.05);
+        }
+
+        /* ── THEME BTN ── */
+        .theme-btn {
+            background: none; border: 1px solid var(--border);
+            color: var(--brand); border-radius: 50%;
+            width: 36px; height: 36px; font-size: 0.95rem;
+            cursor: pointer; transition: all 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .theme-btn:hover { border-color: var(--brand); box-shadow: 0 0 12px var(--glow); }
+
+        /* ── BURGER ── */
+        .burger {
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; padding: 7px; background: none;
+            border: 1px solid var(--border); border-radius: 4px;
+        }
+        .burger span { width: 20px; height: 2px; background: var(--brand); border-radius: 2px; transition: all 0.3s; }
+
+        /* ── OVERLAY ── */
+        .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 998; }
+        .overlay.show { display: block; }
+
+        /* ── MAIN ── */
+        main { max-width: 720px; margin: 0 auto; padding: 4rem 1.5rem 5rem; position: relative; z-index: 1; }
+
+        /* ── PAGE HEADER ── */
+        .page-header { margin-bottom: 3rem; }
+        .page-tag {
+            font-family: 'Share Tech Mono', monospace; font-size: 0.8rem;
+            color: var(--accent); letter-spacing: 3px; display: block; margin-bottom: 0.8rem;
+        }
+        .page-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--brand); text-shadow: 0 0 30px var(--glow);
+            margin-bottom: 0.8rem;
+        }
+        .page-line { width: 80px; height: 2px; background: linear-gradient(90deg, var(--brand), transparent); margin-bottom: 1.2rem; }
+        .page-desc { font-size: 1.05rem; opacity: 0.75; max-width: 480px; line-height: 1.8; }
+
+        /* ── REVEAL ── */
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── FORM CARD ── */
+        .form-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2.5rem;
+            box-shadow: 0 0 40px rgba(0,212,255,0.05);
+            position: relative; overflow: hidden;
+        }
+        .form-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--brand), var(--brand2), var(--accent));
+        }
+
+        /* ── FORM GROUPS ── */
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.4rem; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-group label {
+            font-family: 'Share Tech Mono', monospace; font-size: 0.72rem;
+            letter-spacing: 2px; text-transform: uppercase; color: var(--brand); opacity: 0.85;
+        }
+        .form-group label .req { color: var(--accent); margin-left: 3px; }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem 1rem; background: var(--bg); color: var(--txt);
+            border: 1px solid var(--border); border-radius: 6px;
+            font-family: 'Rajdhani', sans-serif; font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { opacity: 0.4; }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(0,212,255,0.15);
+        }
+        .form-group input.error,
+        .form-group textarea.error,
+        .form-group select.error { border-color: #f87171; }
+        .form-group textarea { resize: vertical; min-height: 140px; }
+        .select-wrap { position: relative; }
+        .select-wrap::after {
+            content: '▾'; position: absolute; right: 1rem; top: 50%;
+            transform: translateY(-50%); color: var(--brand); pointer-events: none;
+            font-size: 0.9rem;
+        }
+        .select-wrap select { width: 100%; cursor: pointer; }
+        .error-msg { font-size: 0.75rem; color: #f87171; letter-spacing: 1px; display: none; }
+        .error-msg.visible { display: block; }
+
+        /* ── SUBMIT ── */
+        .form-footer { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .btn-submit {
+            font-family: 'Orbitron', sans-serif; font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            background: linear-gradient(135deg, var(--brand), var(--brand2));
+            color: #050a0f; border: none; padding: 0.9rem 2.2rem;
+            border-radius: 6px; cursor: pointer; transition: all 0.3s;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--glow); }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-submit .spinner {
+            width: 14px; height: 14px; border: 2px solid rgba(5,10,15,0.3);
+            border-top-color: #050a0f; border-radius: 50%;
+            animation: spin 0.7s linear infinite; display: none;
+        }
+        .btn-submit.loading .spinner { display: block; }
+        .btn-submit.loading .btn-text { display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── SUCCESS ── */
+        .form-success {
+            display: none; margin-top: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            background: rgba(0,212,255,0.08);
+            border: 1px solid var(--brand); border-radius: 8px;
+            color: var(--brand); font-size: 0.95rem; letter-spacing: 1px;
+            align-items: center; gap: 0.8rem;
+        }
+        .form-success.visible { display: flex; }
+        .form-success i { font-size: 1.2rem; }
+
+        /* ── BACK LINK ── */
+        .back-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase; color: var(--txt);
+            border: 1px solid var(--border); border-radius: 4px;
+            padding: 0.5rem 1rem; margin-bottom: 2.5rem;
+            transition: all 0.3s; opacity: 0.6;
+        }
+        .back-link:hover { color: var(--brand); border-color: var(--brand); opacity: 1; box-shadow: 0 0 12px var(--glow); }
+
+        /* ── FOOTER ── */
+        footer {
+            text-align: center; padding: 2rem;
+            border-top: 1px solid var(--border);
+            font-family: 'Share Tech Mono', monospace; font-size: 0.7rem;
+            letter-spacing: 3px; opacity: 0.4; position: relative; z-index: 1;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.2rem; }
+            .burger { display: flex; }
+            nav {
+                position: fixed; top: 0; right: -280px; width: 280px; height: 100vh;
+                background: var(--bg2); border-left: 1px solid var(--border);
+                z-index: 999; padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease; display: flex; flex-direction: column;
+            }
+            nav.open { right: 0; }
+            nav ul { flex-direction: column; gap: 0.5rem; }
+            nav a { padding: 0.8rem 1rem; font-size: 0.75rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-card { padding: 1.5rem; }
+            main { padding: 2.5rem 1rem 4rem; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <header role="banner">
+        <a href="index.html" class="logo-text" aria-label="Steeve Barthel, retour à l'accueil">Steeve Barthel</a>
+        <div class="header-right">
+            <button class="theme-btn" id="themeBtn" aria-label="Basculer vers le thème clair">☀️</button>
+            <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="main-nav" aria-label="Navigation principale">
+                <ul role="menubar">
+                    <li role="none"><a href="index.html#hero" role="menuitem">Accueil</a></li>
+                    <li role="none"><a href="index.html#competences" role="menuitem">Skills</a></li>
+                    <li role="none"><a href="index.html#projets" role="menuitem">Projets</a></li>
+                    <li role="none"><a href="contact.html" role="menuitem" class="actif">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <a href="index.html" class="back-link" aria-label="Retour à l'accueil">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i> Retour
+        </a>
+
+        <div class="page-header reveal">
+            <span class="page-tag" aria-hidden="true">// PRISE DE CONTACT</span>
+            <h1 class="page-title">Contact</h1>
+            <div class="page-line" aria-hidden="true"></div>
+            <p class="page-desc">Une idée, une collaboration, ou juste envie d'échanger ? Remplissez le formulaire — je réponds dès que possible.</p>
+        </div>
+
+        <div class="form-card reveal">
+            <form id="contact-form" novalidate aria-label="Formulaire de contact">
+
+                <div class="form-row">
+                    <!-- Nom -->
+                    <div class="form-group">
+                        <label for="f-nom">Nom <span class="req" aria-label="champ obligatoire">*</span></label>
+                        <input type="text" id="f-nom" name="nom"
+                               autocomplete="given-name"
+                               required minlength="2"
+                               aria-required="true"
+                               aria-describedby="f-nom-error"
+                               placeholder="Jean">
+                        <span id="f-nom-error" class="error-msg" role="alert" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Prénom -->
+                    <div class="form-group">
+                        <label for="f-prenom">Prénom</label>
+                        <input type="text" id="f-prenom" name="prenom"
+                               autocomplete="family-name"
+                               placeholder="Dupont">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="f-email">Email <span class="req" aria-label="champ obligatoire">*</span></label>
+                    <input type="email" id="f-email" name="email"
+                           autocomplete="email"
+                           required
+                           aria-required="true"
+                           aria-describedby="f-email-error"
+                           placeholder="votre@email.com">
+                    <span id="f-email-error" class="error-msg" role="alert" aria-live="polite"></span>
+                </div>
+
+                <!-- Sujet -->
+                <div class="form-group">
+                    <label for="f-sujet">Sujet <span class="req" aria-label="champ obligatoire">*</span></label>
+                    <div class="select-wrap">
+                        <select id="f-sujet" name="sujet" required aria-required="true" aria-describedby="f-sujet-error">
+                            <option value="" disabled selected>Choisir un sujet…</option>
+                            <option value="collaboration">Collaboration / Projet</option>
+                            <option value="stage">Proposition de stage</option>
+                            <option value="question">Question générale</option>
+                            <option value="autre">Autre</option>
+                        </select>
+                    </div>
+                    <span id="f-sujet-error" class="error-msg" role="alert" aria-live="polite"></span>
+                </div>
+
+                <!-- Message -->
+                <div class="form-group">
+                    <label for="f-message">Message <span class="req" aria-label="champ obligatoire">*</span></label>
+                    <textarea id="f-message" name="message"
+                              required minlength="10"
+                              aria-required="true"
+                              aria-describedby="f-message-error"
+                              placeholder="Votre message (min. 10 caractères)..."></textarea>
+                    <span id="f-message-error" class="error-msg" role="alert" aria-live="polite"></span>
+                </div>
+
+                <div class="form-footer">
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <div class="spinner" aria-hidden="true"></div>
+                        <span class="btn-text">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            Envoyer le message
+                        </span>
+                    </button>
+                </div>
+
+                <div id="form-success" class="form-success" role="status" aria-live="polite">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i>
+                    Message envoyé avec succès ! Je vous répondrai dès que possible.
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+
+    <footer role="contentinfo">
+        <p>© <span id="annee"></span> STEEVE BARTHEL // BUT MMI // TOUS DROITS RÉSERVÉS</p>
+    </footer>
+
+    <script>
+    // ── Année ──
+    document.getElementById('annee').textContent = new Date().getFullYear();
+
+    // ── Thème ──
+    const themeBtn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    function applyTheme(light) {
+        html.classList.toggle('theme-light', light);
+        themeBtn.textContent = light ? '🌙' : '☀️';
+        themeBtn.setAttribute('aria-label', light ? 'Basculer vers le thème sombre' : 'Basculer vers le thème clair');
+    }
+    applyTheme(localStorage.getItem('theme') === 'light');
+    themeBtn.addEventListener('click', () => {
+        const isLight = !html.classList.contains('theme-light');
+        applyTheme(isLight);
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+
+    // ── Burger ──
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mainNav = document.getElementById('main-nav');
+    const overlay = document.getElementById('overlay');
+    function toggleNav(open) {
+        const isOpen = open !== undefined ? open : !mainNav.classList.contains('open');
+        mainNav.classList.toggle('open', isOpen);
+        overlay.classList.toggle('show', isOpen);
+        burgerBtn.setAttribute('aria-expanded', String(isOpen));
+        burgerBtn.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu de navigation');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+    burgerBtn.addEventListener('click', () => toggleNav());
+    overlay.addEventListener('click', () => toggleNav(false));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleNav(false); });
+    mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleNav(false)));
+
+    // ── Reveal ──
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+
+    // ── Validation ──
+    const fields = {
+        nom:     { el: document.getElementById('f-nom'),     errEl: document.getElementById('f-nom-error'),     rules: { required: true, minLength: 2 } },
+        email:   { el: document.getElementById('f-email'),   errEl: document.getElementById('f-email-error'),   rules: { required: true, email: true } },
+        sujet:   { el: document.getElementById('f-sujet'),   errEl: document.getElementById('f-sujet-error'),   rules: { required: true } },
+        message: { el: document.getElementById('f-message'), errEl: document.getElementById('f-message-error'), rules: { required: true, minLength: 10 } }
+    };
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function validateField(key) {
+        const { el, errEl, rules } = fields[key];
+        const val = el.value.trim();
+        let msg = '';
+        if (rules.required && !val) msg = 'Ce champ est obligatoire.';
+        else if (rules.email && !emailRe.test(val)) msg = 'Adresse email invalide.';
+        else if (rules.minLength && val.length < rules.minLength) msg = `Minimum ${rules.minLength} caractères requis.`;
+        if (msg) {
+            errEl.textContent = msg; errEl.classList.add('visible');
+            el.classList.add('error'); el.setAttribute('aria-invalid', 'true');
+            return false;
+        }
+        errEl.textContent = ''; errEl.classList.remove('visible');
+        el.classList.remove('error'); el.setAttribute('aria-invalid', 'false');
+        return true;
+    }
+
+    Object.keys(fields).forEach(key => {
+        fields[key].el.addEventListener('blur', () => validateField(key));
+        fields[key].el.addEventListener('input', () => {
+            if (fields[key].el.classList.contains('error')) validateField(key);
+        });
+    });
+
+    // ── Submit ──
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        const ok = Object.keys(fields).every(validateField);
+        if (!ok) return;
+
+        // Animation chargement
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            document.getElementById('form-success').classList.add('visible');
+            form.reset();
+            Object.values(fields).forEach(({ el, errEl }) => {
+                el.classList.remove('error');
+                el.setAttribute('aria-invalid', 'false');
+                errEl.classList.remove('visible');
+            });
+            setTimeout(() => document.getElementById('form-success').classList.remove('visible'), 6000);
+        }, 1200);
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services &amp; adresses — CTIG Saveurs</title>
+  <meta name="description" content="Restaurants, ateliers, marchés et producteurs labellisés CTIG en Guadeloupe.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#contenu" class="skip-link">Aller au contenu principal</a>
+  <header class="header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <svg class="ico ico-xl logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6h3a2 2 0 0 1 2 2v2h-8"/><path d="M13 22v-5"/></svg>
+        CTIG <span>Saveurs</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Ouvrir le menu" id="nav-toggle-btn">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav aria-label="Navigation principale">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="services.html" aria-current="page">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="page-hero">
+    <div class="page-hero-inner container">
+          <button class="back-btn" onclick="history.back()" aria-label="Retourner à la page précédente">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Retour
+    </button>
+      <nav aria-label="Fil d'Ariane" class="breadcrumb"><a href="index.html">Accueil</a> <span class="breadcrumb-sep"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span> <span aria-current="page">Services</span></nav>
+      <h1>Services &amp; adresses culinaires</h1>
+      <p>Restaurants, ateliers, marchés et producteurs locaux labellisés CTIG.</p>
+    </div>
+  </div>
+
+  <main id="contenu">
+    <div class="container">
+      <div class="layout-filters">
+
+        <div class="filters-sidebar">
+          <button class="filters-toggle-btn" aria-expanded="false" aria-controls="filters-panel-srv" id="filters-toggle-srv">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2.5" fill="currentColor"/><circle cx="16" cy="12" r="2.5" fill="currentColor"/><circle cx="10" cy="18" r="2.5" fill="currentColor"/></svg> Filtres <span class="ft-arrow"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="filters-panel" id="filters-panel-srv" role="search" aria-label="Filtres services">
+            <form id="form-filtres-srv">
+              <button type="button" class="filter-reset" id="btn-reset-srv">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg> Réinitialiser
+              </button>
+              <fieldset class="filter-group">
+                <legend>Catégorie</legend>
+                <label><input type="checkbox" name="categorie" value="restaurant"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="18" y2="22"/><polyline points="6 6 6 11 11 11 6 22"/><polyline points="6 6 11 6"/></svg> Restaurant</label>
+                <label><input type="checkbox" name="categorie" value="atelier"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6z"/><line x1="6" y1="17" x2="18" y2="17"/></svg> Atelier</label>
+                <label><input type="checkbox" name="categorie" value="marche"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Marché</label>
+                <label><input type="checkbox" name="categorie" value="producteur"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22c1.25-.987 2.27-1.975 3.9-2.975C9 17 12 17 15 19c1.5 1 3 2 4.5 2.025"/><path d="M2 22s4-2 6-4 6-4 10-4"/><path d="M22 2s-8 1-12 6c-2.5 3-3 6-1 9"/></svg> Producteur</label>
+              </fieldset>
+              <fieldset class="filter-group">
+                <legend>Île</legend>
+                <label><input type="checkbox" name="ile" value="basse-terre"> Basse-Terre</label>
+                <label><input type="checkbox" name="ile" value="grande-terre"> Grande-Terre</label>
+                <label><input type="checkbox" name="ile" value="marie-galante"> Marie-Galante</label>
+                <label><input type="checkbox" name="ile" value="saintes"> Les Saintes</label>
+              </fieldset>
+              <fieldset class="filter-group">
+                <legend>Options</legend>
+                <label><input type="checkbox" name="pmr" value="1"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="1.5"/><path d="M9 9h4l2 5h3"/><path d="M9 9v5h4"/><circle cx="9" cy="19" r="2"/><circle cx="15" cy="19" r="2"/></svg> Accessible PMR</label>
+                <label><input type="checkbox" name="ctig" value="1"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Labellisé CTIG</label>
+              </fieldset>
+              <button type="submit" class="btn btn-primary btn-block"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Appliquer</button>
+            </form>
+          </div>
+        </div>
+
+        <section class="filters-results" aria-label="Liste des services">
+          <div class="results-header">
+            <p class="results-count" role="status" aria-live="polite">
+              <strong id="srv-count">8</strong> services trouvés
+            </p>
+          </div>
+          <div class="cards-grid" id="services-grid"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="modale-overlay" id="modal-overlay" aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modale-box">
+      <button class="modale-fermer" id="modal-close" aria-label="Fermer"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <img id="modal-img" src="" alt="" class="modale-img">
+      <div class="modale-body">
+        <div id="modal-badges" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;"></div>
+        <h2 class="modale-titre" id="modal-title"></h2>
+        <div class="modale-meta" id="modal-meta"></div>
+        <div id="modal-detail-sections"></div>
+        <div class="modale-actions">
+          <a href="contact.html" class="btn btn-primary"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Nous contacter</a>
+          <button class="btn btn-secondary" id="modal-close-btn">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <svg class="ico ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6h3a2 2 0 0 1 2 2v2h-8"/><path d="M13 22v-5"/></svg>
+          CTIG <span>Saveurs</span>
+        </a>
+        <p>Le Comité du Tourisme des Îles de Guadeloupe valorise la gastronomie créole authentique.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Accessibilité</h4>
+        <ul>
+          <li><a href="#">Déclaration d'accessibilité</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 CTIG — Portail Culinaire des Îles de Guadeloupe</div>
+  </footer>
+  <script>
+  (function(){
+    const t=document.getElementById('nav-toggle-btn'),l=document.getElementById('nav-list');
+    if(!t||!l)return;
+    const menuIco='<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>', closeIco='<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    t.addEventListener('click',()=>{const o=l.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));t.innerHTML=o?closeIco:menuIco;});
+    document.addEventListener('click',e=>{if(!t.contains(e.target)&&!l.contains(e.target)){l.classList.remove('is-open');t.setAttribute('aria-expanded','false');t.innerHTML=menuIco;}});
+  })();
+  </script>
+  <script>
+  // ─── Icônes SVG inline pour le JS ───
+  const SVG = {
+    fork:    '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="18" y2="22"/><polyline points="6 6 6 11 11 11 6 22"/><polyline points="6 6 11 6"/></svg>',
+    basket:  '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>',
+    leaf:    '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 22c1.25-.987 2.27-1.975 3.9-2.975C9 17 12 17 15 19c1.5 1 3 2 4.5 2.025"/><path d="M2 22s4-2 6-4 6-4 10-4"/><path d="M22 2s-8 1-12 6c-2.5 3-3 6-1 9"/></svg>',
+    workshop:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>',
+    phone:   '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z"/></svg>',
+    mail:    '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+    clock:   '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>',
+    award:   '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>',
+    pmr:     '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="1.5"/><path d="M9 9h4l2 5h3"/><path d="M9 9v5h4"/><circle cx="9" cy="19" r="2"/><circle cx="15" cy="19" r="2"/></svg>',
+    check:   '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>',
+  };
+
+  const SERVICES=[
+    {id:1,title:"Restaurant Ti'Punch",categorie:"restaurant",catIco:"fork",catLabel:"Restaurant créole",ile:"grande-terre",lieu:"Sainte-Anne",ctig:true,pmr:true,img:"images/services/serv-1.jpeg",imgAlt:"Restaurant créole",description:"Cuisine traditionnelle dans un cadre authentique, spécialités de poissons frais et accras dorés. Un incontournable de la gastronomie guadeloupéenne.",horaires:["Lun–Sam : 11h–22h30","Dimanche : 11h–16h"],adresse:"12 rue des Flamboyants, 97180 Sainte-Anne",tel:"+590 590 88 12 34",details:[{t:"Spécialités",v:"Accras de morue, chatrou à la créole, poulet boucané, poisson frais du jour."},{t:"Ambiance",v:"Terrasse ombragée face à la mer, musique créole le vendredi soir."},{t:"Prix moyen",v:"Entrée + plat + dessert : 28 € environ."}]},
+    {id:2,title:"Marché de Pointe-à-Pitre",categorie:"marche",catIco:"basket",catLabel:"Marché",ile:"grande-terre",lieu:"Pointe-à-Pitre",ctig:true,pmr:false,img:"images/services/serv-2.jpeg",imgAlt:"Marché créole",description:"Marché central historique : épices rares, fruits exotiques, poissons de pêche locale. Le cœur battant de la Guadeloupe depuis 1882.",horaires:["Lun–Sam : 6h–13h","Dimanche : 6h–10h"],adresse:"Place de la Victoire, 97110 Pointe-à-Pitre",tel:"+590 590 82 00 00",details:[{t:"À trouver",v:"Épices créoles, massalé, piment végétarien, christophines, bananes plantain."},{t:"Bon à savoir",v:"Arrivez tôt pour les meilleurs produits. Les vendeurs de poisson sont là dès 5h30."},{t:"Durée conseillée",v:"1h30 à 2h pour en faire le tour complet."}]},
+    {id:3,title:"Distillerie Bielle",categorie:"producteur",catIco:"leaf",catLabel:"Producteur",ile:"marie-galante",lieu:"Grand-Bourg",ctig:false,pmr:true,img:"images/services/serv-3.jpeg",imgAlt:"Distillerie",description:"Visite guidée de la distillerie et dégustation de rhum agricole AOC Marie-Galante. Un voyage au cœur du patrimoine sucrier des Antilles.",horaires:["Lun–Ven : 9h–17h","Samedi : 9h–13h"],adresse:"Section Bielle, 97112 Grand-Bourg",tel:"+590 590 97 93 62",details:[{t:"Visite",v:"Alambics en cuivre, cuves de fermentation, distillation en direct (selon saison)."},{t:"Dégustation",v:"Blancs agricoles, vieux rhums, rhums épicés. Vente directe à la boutique."},{t:"Tarif",v:"8 € adulte, gratuit enfant."}]},
+    {id:4,title:"Folie Plage — Chez Prudence",categorie:"restaurant",catIco:"fork",catLabel:"Restaurant créole",ile:"grande-terre",lieu:"Anse-Bertrand",ctig:true,pmr:false,img:"images/services/serv-4.jpg",imgAlt:"Colombo créole",description:"Institution locale, célèbre pour ses colombos, son boudin créole maison et ses accras préparés à la commande.",horaires:["Mar–Dim : 11h30–15h","Vendredi soir : 19h–22h"],adresse:"Rue Peynier, 97100 Basse-Terre",tel:"+590 590 81 50 29",details:[{t:"Plats signature",v:"Colombo de cabri, soupe de poisson, gratin de christophines, pain doux maison."},{t:"À savoir",v:"Réservation conseillée le week-end. Menu du jour à 14 € jusqu'à 13h30."},{t:"Ambiance",v:"Cadre familial, tables partagées, authenticité créole garantie."}]},
+    {id:5,title:"La Papoterie",categorie:"atelier",catIco:"workshop",catLabel:"Atelier",ile:"grande-terre",lieu:"Le Moule",ctig:true,pmr:true,img:"images/services/serv-5.jpg",imgAlt:"Atelier",description:"Atelier mixte alliant poterie traditionnelle et cuisine créole. Fabriquez votre canari (cocotte en terre) puis cuisinez le plat qui va avec !",horaires:["Mer, Ven, Sam : 9h–13h","Sur réservation uniquement"],adresse:"Habitation Duchassaing, 97160 Le Moule",tel:"+590 690 45 12 78",details:[{t:"Programme",v:"3h d'atelier : 1h30 poterie + 1h30 cuisine créole. Recette fournie."},{t:"Tarif",v:"55 € par personne, minimum 4 personnes. Tabliers fournis."},{t:"Public",v:"Dès 8 ans. Table en hauteur réglable, adapté PMR."}]},
+    {id:6,title:"Habitation La Grivelière",categorie:"producteur",catIco:"leaf",catLabel:"Producteur",ile:"basse-terre",lieu:"Vallée de Grande-Rivière",ctig:true,pmr:false,img:"images/services/serv-6.jpg",imgAlt:"Plantation de café",description:"Plantation historique de café et cacao au cœur du Parc National. Dégustation de cafés d'exception cultivés en altitude.",horaires:["Lun–Sam : 9h–17h","Dimanche : 10h–14h"],adresse:"Vallée de Grande-Rivière, 97120 Vieux-Habitants",tel:"+590 590 98 23 45",details:[{t:"Visite",v:"Parcours botanique 1h30 dans les caféiers et cacaoyers. Guide inclus."},{t:"Dégustation",v:"Café bleu de la Guadeloupe, chocolat artisanal, rhum arrangé maison."},{t:"Boutique",v:"Café torréfié, chocolat cru, confitures tropicales."}]},
+    {id:7,title:"Marché de Capesterre-Belle-Eau",categorie:"marche",catIco:"basket",catLabel:"Marché",ile:"basse-terre",lieu:"Capesterre-Belle-Eau",ctig:false,pmr:true,img:"images/services/serv-7.jpeg",imgAlt:"Marché local",description:"Marché convivial aux abords de la Soufrière, réputé pour ses bananes Poyo et son boudin créole fumé. Ambiance locale garantie.",horaires:["Samedi : 6h–12h","Mercredi : 6h–10h"],adresse:"Place du Marché, 97130 Capesterre-Belle-Eau",tel:null,details:[{t:"À trouver",v:"Bananes Poyo, ignames, épices locales, boudin et colombo en poudre."},{t:"Spécialité",v:"Le marché du samedi est le plus animé avec des acras chauds de rue."},{t:"Accès PMR",v:"Parking à proximité, allées larges, surfaces planes."}]},
+    {id:8,title:"Café De La Marine",categorie:"restaurant",catIco:"fork",catLabel:"Restaurant",ile:"saintes",lieu:"Terre-de-Haut",ctig:true,pmr:false,img:"images/services/serv-8.jpg",imgAlt:"Restaurant vue mer",description:"Terrasse vue mer face au Pain de Sucre. Langouste grillée, espadon mariné et tourments d'amour maison.",horaires:["Mar–Dim : 12h–15h","Ven–Sam soir : 19h–22h"],adresse:"Rue Jean-Calot, 97137 Terre-de-Haut",tel:"+590 590 99 53 01",details:[{t:"Spécialités",v:"Langouste grillée, carpaccio de thon, accras de lambi, tourments d'amour au coco."},{t:"Vue",v:"Panorama exceptionnel sur la baie des Saintes et le Pain de Sucre."},{t:"Réservation",v:"Indispensable en haute saison (décembre–avril). Contact par téléphone uniquement."}]}
+  ];
+  let filteredSrv=[...SERVICES];
+
+  function cardHtml(s){
+    return `<article class="card">
+      <div class="card-img-wrap"><img src="${s.img}" alt="${s.imgAlt}" class="card-image" loading="lazy"></div>
+      <div class="card-body">
+        <div class="card-badges">
+          ${s.ctig?'<span class="badge badge-ctig">'+ SVG.award +' Labellisé CTIG</span>':''}
+          ${s.pmr ?'<span class="badge badge-pmr">'+ SVG.pmr  +' PMR</span>':''}
+        </div>
+        <h3 class="card-title">${s.title}</h3>
+        <p class="card-meta">
+          <span>${SVG[s.catIco]} ${s.catLabel}</span>
+          <span>${s.lieu}</span>
+        </p>
+        <p class="card-desc">${s.description}</p>
+        <div class="card-actions"><button class="btn btn-primary btn-block" onclick="openModal(${s.id})">Voir le détail</button></div>
+      </div></article>`;
+  }
+
+  function updateDisplay(){
+    const g=document.getElementById('services-grid'),c=document.getElementById('srv-count');
+    c.textContent=filteredSrv.length;
+    g.innerHTML=filteredSrv.length?filteredSrv.map(cardHtml).join(''):'<div class="no-results"><div style="color:var(--gris-40);margin-bottom:12px;">'+SVG.search+'</div><p>Aucun service ne correspond à vos critères.</p></div>';
+  }
+
+  function applyFilters(){
+    const f=document.getElementById('form-filtres-srv');
+    const cats=[...f.querySelectorAll('[name="categorie"]:checked')].map(i=>i.value);
+    const iles=[...f.querySelectorAll('[name="ile"]:checked')].map(i=>i.value);
+    const pmr=f.querySelector('[name="pmr"]')?.checked,ctig=f.querySelector('[name="ctig"]')?.checked;
+    filteredSrv=SERVICES.filter(s=>{
+      if(cats.length&&!cats.includes(s.categorie))return false;
+      if(iles.length&&!iles.includes(s.ile))return false;
+      if(pmr&&!s.pmr)return false;if(ctig&&!s.ctig)return false;return true;
+    });updateDisplay();
+  }
+
+  function openModal(id){
+    const s=SERVICES.find(x=>x.id===id);if(!s)return;
+    document.getElementById('modal-img').src=s.img;document.getElementById('modal-img').alt=s.imgAlt;
+    document.getElementById('modal-title').textContent=s.title;
+    document.getElementById('modal-badges').innerHTML=
+      (s.ctig?'<span class="badge badge-ctig">'+ SVG.award +' Labellisé CTIG</span>':'')+
+      (s.pmr?'<span class="badge badge-pmr">'+ SVG.pmr +' PMR</span>':''  );
+    document.getElementById('modal-meta').innerHTML=
+      '<span>'+SVG[s.catIco]+' '+s.catLabel+'</span>'+
+      '<span>'+s.lieu+'</span>'+
+      (s.tel?'<span>'+SVG.phone+' <a href="tel:'+s.tel+'">'+s.tel+'</a></span>':''  );
+    const horSection='<div class="modale-section"><h4>'+SVG.clock+' Horaires</h4><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">'+
+      s.horaires.map(h=>'<span style="background:var(--gris-10);padding:7px 12px;border-radius:6px;font-size:.88rem;display:flex;align-items:center;gap:6px;">'+SVG.clock+' '+h+'</span>').join('')+'</div></div>';
+    const detSections=s.details.map(d=>'<div class="modale-section"><h4>'+d.t+'</h4><p>'+d.v+'</p></div>').join('');
+    document.getElementById('modal-detail-sections').innerHTML=horSection+detSections;
+    document.getElementById('modal-overlay').classList.add('is-visible');
+    document.body.style.overflow='hidden';document.getElementById('modal-close').focus();
+  }
+  function closeModal(){document.getElementById('modal-overlay').classList.remove('is-visible');document.body.style.overflow='';}
+
+  document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('form-filtres-srv').addEventListener('submit',e=>{e.preventDefault();applyFilters();});
+    document.getElementById('form-filtres-srv').addEventListener('change',applyFilters);
+    document.getElementById('btn-reset-srv').addEventListener('click',()=>{document.getElementById('form-filtres-srv').reset();filteredSrv=[...SERVICES];updateDisplay();});
+    const ftBtn=document.getElementById('filters-toggle-srv'),ftPanel=document.getElementById('filters-panel-srv');
+    ftBtn?.addEventListener('click',()=>{const o=ftPanel.classList.toggle('is-open');ftBtn.setAttribute('aria-expanded',String(o));});
+    document.getElementById('modal-close').addEventListener('click',closeModal);
+    document.getElementById('modal-close-btn').addEventListener('click',closeModal);
+    document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target===document.getElementById('modal-overlay'))closeModal();});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+    updateDisplay();
+  });
+  </script>
+</body>
+</html>

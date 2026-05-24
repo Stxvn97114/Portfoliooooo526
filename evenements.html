@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Événements — CTIG Saveurs</title>
+  <meta name="description" content="Découvrez et inscrivez-vous aux ateliers culinaires, dégustations et visites guidées en Guadeloupe.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/evenements.css">
+  <style>
+  .evt-wrap{max-width:1200px;margin:0 auto;padding:0 20px;}
+  @media(min-width:768px){.evt-wrap{padding:0 32px;}}
+  .evt-layout{display:flex;gap:28px;align-items:flex-start;margin-top:28px;padding-bottom:60px;}
+  @media(max-width:959px){.evt-layout{flex-direction:column;}}
+  .evt-sidebar{width:272px;min-width:272px;background:var(--blanc);border:1px solid var(--gris-20);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);position:sticky;top:80px;overflow:hidden;}
+  .evt-sidebar-header{background:var(--bleu);color:var(--blanc);padding:15px 20px;font-weight:700;font-size:0.92rem;display:flex;align-items:center;gap:8px;}
+  .evt-sidebar-body{padding:18px;}
+  .evt-results{flex:1;min-width:0;}
+  .results-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:var(--blanc);border:1px solid var(--gris-20);border-radius:var(--radius-sm);padding:12px 18px;margin-bottom:20px;box-shadow:var(--shadow-sm);}
+  #results-count{font-weight:700;font-size:0.92rem;}
+  .sort-wrapper{display:flex;align-items:center;gap:8px;font-size:0.88rem;color:var(--gris-60);}
+  .sort-wrapper select{padding:7px 12px;border:1.5px solid var(--gris-20);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:0.88rem;cursor:pointer;}
+  @media(max-width:959px){.evt-sidebar{width:100%;min-width:unset;position:static;}}
+  </style>
+</head>
+<body>
+  <a href="#contenu" class="skip-link">Aller au contenu principal</a>
+  <header class="header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <svg class="ico ico-xl logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6h3a2 2 0 0 1 2 2v2h-8"/><path d="M13 22v-5"/></svg>
+        CTIG <span>Saveurs</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list" aria-label="Ouvrir le menu" id="nav-toggle-btn">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <nav aria-label="Navigation principale">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html" aria-current="page">Événements</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="page-hero">
+    <div class="page-hero-inner container">
+          <button class="back-btn" onclick="history.back()" aria-label="Retourner à la page précédente">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Retour
+    </button>
+      <nav aria-label="Fil d'Ariane" class="breadcrumb"><a href="index.html">Accueil</a> <span class="breadcrumb-sep"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span> <span aria-current="page">Événements</span></nav>
+      <h1>Événements culinaires</h1>
+      <p>Ateliers, dégustations, marchés et festivals en Guadeloupe.</p>
+    </div>
+  </div>
+
+  <main id="contenu">
+    <div class="evt-wrap">
+      <div class="evt-layout">
+
+        <aside class="evt-sidebar" aria-label="Filtres de recherche">
+          <div class="evt-sidebar-header">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="8" cy="6" r="2.5" fill="currentColor"/><circle cx="16" cy="12" r="2.5" fill="currentColor"/><circle cx="10" cy="18" r="2.5" fill="currentColor"/></svg>
+            Filtres
+          </div>
+          <div class="evt-sidebar-body">
+            <form id="form-filtres">
+              <button type="button" class="filter-reset-btn" id="btn-reset">
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg> Réinitialiser
+              </button>
+              <div class="filter-section">
+                <p class="filter-section-title">Île</p>
+                <label><input type="checkbox" name="ile" value="grande-terre"> Grande-Terre</label>
+                <label><input type="checkbox" name="ile" value="basse-terre"> Basse-Terre</label>
+                <label><input type="checkbox" name="ile" value="marie-galante"> Marie-Galante</label>
+                <label><input type="checkbox" name="ile" value="les-saintes"> Les Saintes</label>
+              </div>
+              <div class="filter-section">
+                <p class="filter-section-title">Type d'événement</p>
+                <label><input type="checkbox" name="type" value="atelier"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6z"/><line x1="6" y1="17" x2="18" y2="17"/></svg> Atelier</label>
+                <label><input type="checkbox" name="type" value="degustation"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 22h8"/><path d="M12 11v11"/><path d="M5 3h14l-2 9a5 5 0 0 1-10 0L5 3z"/></svg> Dégustation</label>
+                <label><input type="checkbox" name="type" value="marche"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Marché</label>
+                <label><input type="checkbox" name="type" value="festival"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01M22 8h.01M15 2h.01M22 20h.01"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2z"/></svg> Festival</label>
+              </div>
+              <div class="filter-section">
+                <p class="filter-section-title">Budget</p>
+                <label><input type="radio" name="budget" value="gratuit"> Gratuit</label>
+                <label><input type="radio" name="budget" value="30"> Moins de 30 €</label>
+                <label><input type="radio" name="budget" value="50"> Moins de 50 €</label>
+                <label><input type="radio" name="budget" value="all" checked> Tous les budgets</label>
+              </div>
+              <div class="filter-section">
+                <p class="filter-section-title">Options</p>
+                <label><input type="checkbox" name="pmr" value="true"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="1.5"/><path d="M9 9h4l2 5h3"/><path d="M9 9v5h4"/><circle cx="9" cy="19" r="2"/><circle cx="15" cy="19" r="2"/></svg> Accessible PMR</label>
+                <label><input type="checkbox" name="ctig" value="true"> <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Labellisé CTIG</label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Appliquer les filtres</button>
+            </form>
+          </div>
+        </aside>
+
+        <section class="evt-results" aria-label="Liste des événements">
+          <div class="results-bar">
+            <span id="results-count" style="display:flex;align-items:center;gap:6px;"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> <strong id="results-num">0</strong>&nbsp;événement(s)</span>
+            <div class="sort-wrapper">
+              <label for="tri"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> Trier :</label>
+              <select id="tri" class="sort-select">
+                <option value="date-asc">Date (proche → lointaine)</option>
+                <option value="date-desc">Date (lointaine → proche)</option>
+                <option value="prix-asc">Prix croissant</option>
+                <option value="prix-desc">Prix décroissant</option>
+              </select>
+            </div>
+          </div>
+          <div class="cards-grid" id="cards-grid"></div>
+          <div class="pagination" id="pagination"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="modale-overlay" id="modale-detail" aria-modal="true" role="dialog" aria-labelledby="detail-titre">
+    <div class="modale-box">
+      <button class="modale-fermer" id="modale-detail-fermer" aria-label="Fermer"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <img id="detail-img" src="" alt="" class="modale-img">
+      <div class="modale-body">
+        <div id="detail-badges" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;"></div>
+        <h2 id="detail-titre" class="modale-titre"></h2>
+        <div id="detail-meta" class="modale-meta"></div>
+        <p id="detail-description" style="font-size:.95rem;color:var(--gris-80);line-height:1.7;margin-bottom:16px;"></p>
+        <div id="detail-sections"></div>
+        <div class="modale-actions">
+          <button class="btn btn-primary" id="detail-btn-inscrire"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg> S'inscrire</button>
+          <button class="btn btn-secondary" id="modale-detail-fermer-bas">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modale-overlay" id="modale-inscription" aria-modal="true" role="dialog" aria-labelledby="inscription-titre">
+    <div class="modale-box">
+      <button class="modale-fermer" id="modale-inscription-fermer" aria-label="Fermer"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <div class="modale-body" style="padding-top:32px;">
+        <h2 id="inscription-titre" class="modale-titre">S'inscrire à l'événement</h2>
+        <div class="modale-info-box" id="insc-info"></div>
+        <form id="form-inscription" novalidate>
+          <div class="form-group"><label for="i-nom">Nom complet <span class="field-req">*</span></label><input type="text" id="i-nom" required autocomplete="name" placeholder="Votre nom"><span class="erreur" id="i-nom-err"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Veuillez saisir votre nom.</span></div>
+          <div class="form-group"><label for="i-email">Email <span class="field-req">*</span></label><input type="email" id="i-email" required autocomplete="email" placeholder="exemple@email.com"><span class="erreur" id="i-email-err"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Email invalide.</span></div>
+          <div class="form-group"><label for="i-places">Nombre de places <span class="field-req">*</span></label><input type="number" id="i-places" min="1" max="10" value="1" required><span class="erreur" id="i-places-err"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Entre 1 et 10 places.</span></div>
+          <div class="form-group" style="display:flex;align-items:flex-start;gap:10px;"><input type="checkbox" id="i-cgv" required style="width:auto;margin-top:3px;accent-color:var(--bleu);"><label for="i-cgv" style="margin:0;font-weight:400;">J'accepte les <a href="#">conditions générales</a> <span class="field-req">*</span></label></div>
+          <span class="erreur" id="i-cgv-err"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> Veuillez accepter les CGV.</span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;">
+            <button type="submit" class="btn btn-primary"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Confirmer l'inscription</button>
+            <button type="button" class="btn btn-secondary" id="btn-annuler">Annuler</button>
+          </div>
+        </form>
+        <div id="inscription-succes" hidden class="succes-msg" tabindex="-1" style="margin-top:16px;">
+          <svg class="ico ico-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> <strong>Votre inscription a bien été reçue !</strong> Nous vous contacterons prochainement pour la confirmation.
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <svg class="ico ico-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6h3a2 2 0 0 1 2 2v2h-8"/><path d="M13 22v-5"/></svg>
+          CTIG <span>Saveurs</span>
+        </a>
+        <p>Le Comité du Tourisme des Îles de Guadeloupe valorise la gastronomie créole authentique.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="evenements.html">Événements</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Accessibilité</h4>
+        <ul>
+          <li><a href="#">Déclaration d'accessibilité</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 CTIG — Portail Culinaire des Îles de Guadeloupe</div>
+  </footer>
+  <script>
+  (function(){
+    const t=document.getElementById('nav-toggle-btn'),l=document.getElementById('nav-list');
+    if(!t||!l)return;
+    const menuIco='<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>', closeIco='<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    t.addEventListener('click',()=>{const o=l.classList.toggle('is-open');t.setAttribute('aria-expanded',String(o));t.innerHTML=o?closeIco:menuIco;});
+    document.addEventListener('click',e=>{if(!t.contains(e.target)&&!l.contains(e.target)){l.classList.remove('is-open');t.setAttribute('aria-expanded','false');t.innerHTML=menuIco;}});
+  })();
+  </script>
+  <script src="js/evenements.js"></script>
+</body>
+</html>

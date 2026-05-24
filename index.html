@@ -370,7 +370,7 @@
                 <span class="hero-tag" aria-hidden="true">// ÉTUDIANT BUT MMI</span>
                 <h1 id="hero-heading" class="hero-name">Steeve<br><span>BARTHEL</span></h1>
                 <p class="hero-sub" aria-label="Formation : Métiers du Multimédia et de l'Internet">Multimédia &amp; Internet</p>
-                <p class="hero-desc">Passionné de sport et d'informatique, je réunis mes deux passions pour créer des expériences numériques mémorables. Football, jeux vidéo, design et développement web.</p>
+                <p class="hero-desc">Sport et code, deux passions — une seule direction. Je crée des expériences numériques qui marquent, entre football, jeux vidéo, design et développement web.</p>
                 <div class="hero-stats" aria-label="Statistiques rapides">
                     <div class="stat">
                         <span class="stat-num" aria-label="3 années de formation">3</span>
@@ -415,7 +415,7 @@
                 <article class="skill-card" role="listitem">
                     <span class="skill-icon" aria-hidden="true"><i class="fas fa-drafting-compass"></i></span>
                     <h3>Design</h3>
-                    <p>Figma / Canva</p>
+                    <p>Figma / Canva / Photoshop</p>
                     <div class="skill-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Niveau design : 60%">
                         <div class="skill-fill" data-pct="60"></div>
                     </div>
@@ -439,85 +439,396 @@
         <div class="section-line" aria-hidden="true"></div>
     </div>
 
-    <div class="projects-grid">
+    <style>
+        .fan-deck {
+            position: relative;
+            width: 100%;
+            min-height: 430px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 1rem;
+            perspective: 1200px;
+        }
+        .fan-card {
+            position: absolute;
+            width: 240px;
+            height: 370px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            cursor: pointer;
+            transform-origin: center bottom;
+            transition: transform 0.45s cubic-bezier(0.23,1,0.32,1),
+                        box-shadow 0.45s ease,
+                        border-color 0.3s ease;
+            overflow: hidden;
+            user-select: none;
+        }
+        .fan-card::before {
+            content:''; position:absolute; top:0; left:0; right:0; height:3px;
+            background:linear-gradient(90deg,var(--brand),var(--brand2));
+            opacity:0; transition:opacity 0.3s; z-index:2;
+        }
+        .fan-card:hover::before { opacity:1; }
+        .fan-img { width:100%; height:170px; object-fit:cover; display:block; transition:transform 0.4s ease; }
+        .fan-card:hover .fan-img { transform:scale(1.06); }
+        .fan-img-placeholder {
+            width:100%; height:170px; background:#020810;
+            display:flex; flex-direction:column; align-items:center;
+            justify-content:center; gap:0.5rem; border-bottom:1px dashed var(--border);
+        }
+        .fan-img + .fan-img-placeholder { display:none; }
+        .fan-img-placeholder i { font-size:2rem; color:var(--brand); opacity:0.25; }
+        .fan-img-placeholder span { font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--brand); opacity:0.3; letter-spacing:2px; }
+        .fan-body { padding:0.75rem 1rem; }
+        .fan-tag {
+            font-family:'Share Tech Mono',monospace; font-size:0.6rem; color:var(--accent);
+            letter-spacing:2px; text-transform:uppercase; border:1px solid var(--accent);
+            padding:0.15rem 0.5rem; border-radius:3px; display:inline-block; margin-bottom:0.5rem;
+        }
+        .fan-title { font-family:'Orbitron',sans-serif; font-size:0.74rem; font-weight:700; letter-spacing:1.5px; color:var(--brand); margin-bottom:0.25rem; text-transform:uppercase; }
+        .fan-subtitle { font-size:0.72rem; opacity:0.55; line-height:1.4; margin-bottom:0.2rem; font-style:italic; }
+        .fan-desc { font-size:0.78rem; opacity:0.6; line-height:1.5; }
+        .fan-hint { position:absolute; bottom:0.6rem; right:0.8rem; font-family:'Share Tech Mono',monospace; font-size:0.58rem; color:var(--brand); opacity:0; letter-spacing:1px; transition:opacity 0.3s; }
+        .fan-card:hover .fan-hint { opacity:0.5; }
 
-        <!-- Projet 1 -->
-        <article class="project-card" aria-label="Projet : Affiche Simpsons">
-            <div class="project-img-wrap">
-                <img src="14_02.png"
-                     alt="Simpsons : Le film créé en 2007"
-                     width="400" height="560"
-                     onclick="openModal(this)">
-                <div class="project-overlay"></div>
+        /* ── MODAL ── */
+        .proj-modal-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:2000; align-items:center; justify-content:center; backdrop-filter:blur(6px); }
+        .proj-modal-backdrop.open { display:flex; }
+        .proj-modal { position:relative; background:var(--card); border:1px solid var(--brand); border-radius:16px; max-width:680px; width:92vw; max-height:90vh; overflow-y:auto; box-shadow:0 0 60px rgba(0,212,255,0.2); animation:modalIn 0.35s cubic-bezier(0.23,1,0.32,1); }
+        @keyframes modalIn { from{opacity:0;transform:scale(0.88) translateY(30px)} to{opacity:1;transform:scale(1) translateY(0)} }
+        .proj-modal img { width:100%; max-height:420px; object-fit:contain; border-radius:12px 12px 0 0; display:block; background:#020810; }
+        .proj-modal-placeholder { width:100%; height:280px; background:#020810; border-radius:12px 12px 0 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; border-bottom:1px dashed var(--border); }
+        .proj-modal-placeholder i { font-size:3rem; color:var(--brand); opacity:0.2; }
+        .proj-modal-placeholder span { font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--brand); opacity:0.3; letter-spacing:3px; }
+        .proj-modal-body { padding:1.5rem 1.8rem 2rem; }
+        .proj-modal-tag { font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--accent); letter-spacing:2px; text-transform:uppercase; border:1px solid var(--accent); padding:0.2rem 0.6rem; border-radius:3px; display:inline-block; margin-bottom:0.8rem; }
+        .proj-modal-title { font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:700; letter-spacing:2px; color:var(--brand); text-shadow:0 0 20px rgba(0,212,255,0.3); margin-bottom:0.8rem; text-transform:uppercase; }
+        .proj-modal-desc { font-size:0.95rem; opacity:0.75; line-height:1.8; }
+        .proj-modal-close { position:absolute; top:0.9rem; right:1rem; background:rgba(0,0,0,0.5); border:1px solid var(--border); color:var(--txt); width:34px; height:34px; border-radius:50%; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; z-index:10; }
+        .proj-modal-close:hover { border-color:var(--brand); color:var(--brand); }
+        .proj-modal-topbar {
+            display:flex; align-items:center; justify-content:space-between;
+            padding:0.75rem 1rem 0;
+        }
+        .proj-modal-back {
+            background:none; border:1px solid var(--border); color:var(--txt);
+            font-family:'Orbitron',sans-serif; font-size:0.6rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase;
+            padding:0.4rem 0.9rem; border-radius:4px; cursor:pointer;
+            display:flex; align-items:center; gap:0.5rem; transition:all 0.2s;
+        }
+        .proj-modal-back:hover { border-color:var(--brand); color:var(--brand); box-shadow:0 0 10px var(--glow); }
+        .proj-modal-visit {
+            display:inline-flex; align-items:center; gap:0.6rem; margin-top:1.2rem;
+            font-family:'Orbitron',sans-serif; font-size:0.68rem; font-weight:700;
+            letter-spacing:2px; text-transform:uppercase;
+            padding:0.7rem 1.4rem; border-radius:6px;
+            background:linear-gradient(135deg,var(--brand),var(--brand2));
+            color:#050a0f; text-decoration:none; transition:all 0.3s;
+        }
+        .proj-modal-visit:hover { transform:translateY(-2px); box-shadow:0 8px 30px var(--glow); }
+
+        @media(max-width:768px){
+            .fan-deck{min-height:350px;}
+            .fan-card{width:160px;height:245px;border-radius:12px;}
+            .fan-img,.fan-img-placeholder{height:125px;}
+            .fan-body{padding:0.6rem 0.75rem;}
+        }
+    </style>
+
+    <div class="fan-deck" id="fanDeck" role="list" aria-label="Projets en éventail">
+
+        <!-- 0 — Simpsons : bonbons roses -->
+        <article class="fan-card" role="listitem"
+            data-index="0" data-fx="candy"
+            data-tag="Vidéo" data-title="Affiche — Simpsons"
+            data-desc="Affiche minimaliste inspirée du film culte de 2007."
+            data-src="14_02.png" data-alt="Simpsons : Le film créé en 2007"
+            aria-label="Projet : Affiche Simpsons">
+            <img class="fan-img" src="14_02.png" alt="Affiche Simpsons" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="fan-img-placeholder" style="display:none"><i class="fas fa-image"></i><span>IMAGE</span></div>
+            <div class="fan-body">
+                <span class="fan-tag">Vidéo</span>
+                <div class="fan-title">Affiche — Simpsons</div>
+                <div class="fan-desc">Affiche minimaliste inspirée du film culte de 2007.</div>
             </div>
-            <div class="project-body">
-                <span class="project-tag">Vidéo</span>
-                <h3>Affiche — Simpsons</h3>
-                <p>Affiche minimaliste pour un film.</p>
-            </div>
+            <span class="fan-hint">CLIQUER ↗</span>
         </article>
 
-        <!-- Projet 2 -->
-        <article class="project-card" aria-label="Projet : Logo Green Pitch">
-            <div class="project-img-wrap logo-display">
-                <img src="Capture d'écran 2026-05-12 092155.png"
-                     alt="Logo Green Pitch"
-                     width="220" height="110"
-                     onclick="openModal(this)">
-                     </div>
-            <div class="project-body">
-                <span class="project-tag">Design</span>
-                <h3>Logo Club Sportif — Green Pitch</h3>
-                <p>Création de l'identité visuelle <strong>Green Pitch</strong> — logo pour club de football, réalisé sur Canva.</p>
+        <!-- 1 — Green Pitch -->
+        <article class="fan-card" role="listitem"
+            data-index="1" data-fx="default"
+            data-tag="Design" data-title="Logo — Green Pitch"
+            data-desc="Identité visuelle complète de Green Pitch — logo pour club de football, conçu sur Canva."
+            data-src="Capture d'écran 2026-05-12 092155.png" data-alt="Logo Green Pitch"
+            aria-label="Projet : Logo Green Pitch">
+            <img class="fan-img" src="Capture d'écran 2026-05-12 092155.png" alt="Logo Green Pitch" style="object-fit:contain;background:#111;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="fan-img-placeholder" style="display:none"><i class="fas fa-image"></i><span>IMAGE</span></div>
+            <div class="fan-body">
+                <span class="fan-tag">Design</span>
+                <div class="fan-title">Logo — Green Pitch</div>
+                <div class="fan-desc">Identité visuelle complète pour club de football.</div>
             </div>
+            <span class="fan-hint">CLIQUER ↗</span>
         </article>
-                     
-        <!-- Projet 3 -->
-        <article class="project-card" aria-label="Projet : Montage Football">
-            <div class="project-img-wrap">
-                <img src="IMG_7021.webp"
-                     alt="Montage football en cours"
-                     width="400" height="560"
-                     onclick="openModal(this)">
-                    </div>
-            <div class="project-body">
-                <span class="project-tag">En cours</span>
-                <h3>Montage Football</h3>   
-                <p>Edit vidéo football en cours de réalisation.</p>
+
+        <!-- 2 — Montage Football -->
+        <article class="fan-card" role="listitem"
+            data-index="2" data-fx="default"
+            data-tag="En cours" data-title="Montage Football"
+            data-desc="Edit vidéo football — en cours de réalisation."
+            data-src="IMG_7021.png" data-alt="Montage football en cours"
+            aria-label="Projet : Montage Football">
+            <img class="fan-img" src="IMG_7021.png" alt="Montage Football" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="fan-img-placeholder" style="display:none"><i class="fas fa-image"></i><span>IMAGE</span></div>
+            <div class="fan-body">
+                <span class="fan-tag">En cours</span>
+                <div class="fan-title">Montage Football</div>
+                <div class="fan-desc">Edit vidéo football — en cours de réalisation.</div>
             </div>
+            <span class="fan-hint">CLIQUER ↗</span>
         </article>
-            
+
+        <!-- 3 — Chains & Crowns -->
+        <!-- 🖼 IMAGE : remplace les deux src="" par le nom de ton fichier, ex: src="chains.png" -->
+        <article class="fan-card" role="listitem"
+            data-index="3" data-fx="chess"
+            data-tag="Gestion de projet" data-title="Chains &amp; Crowns"
+            data-desc="Jeu de plateau stratégique — projet de gestion et développement." data-src="chains.png" data-alt="Projet Chains &amp; Crowns"
+            aria-label="Projet : Chains &amp; Crowns">
+            <img class="fan-img" src="chains.png" alt="Chains &amp; Crowns" style="display:none" onload="this.style.display='block'" onerror="this.style.display='none'">
+            <div class="fan-img-placeholder" id="ph-chains"><i class="fas fa-chess-king"></i><span>IMAGE À INSÉRER</span></div>
+            <div class="fan-body">
+                <span class="fan-tag">Gestion de projet</span>
+                <div class="fan-title">Chains &amp; Crowns</div>
+                <div class="fan-subtitle">Application de jeu d'échecs conçue pour la JPO</div>
+                <div class="fan-desc"></div>
+            </div>
+            <span class="fan-hint">CLIQUER ↗</span>
+        </article>
+
+        <!-- 4 — Lays Racines -->
+        <!-- 🖼 IMAGE : remplace les deux src="" par le nom de ton fichier, ex: src="lays.png" -->
+        <article class="fan-card" role="listitem"
+            data-index="4" data-fx="elements"
+            data-tag="Projet" data-title="Lays Racines"
+            data-desc="Concept créatif autour de la marque Lays — identité visuelle et direction artistique." data-src="lays.png" data-alt="Projet Lays Racines"
+            aria-label="Projet : Lays Racines">
+            <img class="fan-img" src="lays.png" alt="Lays Racines" style="display:none" onload="this.style.display='block'" onerror="this.style.display='none'">
+            <div class="fan-img-placeholder"><i class="fas fa-seedling"></i><span>IMAGE À INSÉRER</span></div>
+            <div class="fan-body">
+                <span class="fan-tag">Projet</span>
+                <div class="fan-title">Lays Racines</div>
+                <div class="fan-subtitle">Nouvelle chips, la plus agricole possible</div>
+                <div class="fan-desc"></div>
+            </div>
+            <span class="fan-hint">CLIQUER ↗</span>
+        </article>
+
+        <!-- 5 — Islova -->
+        <!-- 🖼 IMAGE : remplace les deux src="" par le nom de ton fichier, ex: src="islova.png" -->
+        <article class="fan-card" role="listitem"
+            data-index="5" data-fx="default"
+            data-tag="Projet" data-title="Islova"
+            data-desc="Site web créé pour Islova — projet de fin d'année BUT MMI." data-src="islova.png" data-alt="Projet Islova"
+            data-link="islova.html"
+            aria-label="Projet : Islova — double-clic pour visiter le site">
+            <img class="fan-img" src="islova.png" alt="Islova" style="display:none" onload="this.style.display='block'" onerror="this.style.display='none'">
+            <div class="fan-img-placeholder"><i class="fas fa-globe"></i><span>IMAGE À INSÉRER</span></div>
+            <div class="fan-body">
+                <span class="fan-tag">Projet</span>
+                <div class="fan-title">Islova</div>
+                <div class="fan-subtitle">Culture guadeloupéenne à travers des accessoires</div>
+                <div class="fan-desc"></div>
+            </div>
+            <span class="fan-hint">CLIQUER ↗ · ×2 = SITE</span>
+        </article>
+
+        <!-- 6 — CTIG Saveurs -->
+        <!-- 🖼 IMAGE : remplace les deux src="" par le nom de ton fichier, ex: src="ctig.png" -->
+        <article class="fan-card" role="listitem"
+            data-index="6" data-fx="default"
+            data-tag="Projet" data-title="CTIG Saveurs"
+            data-desc="Portail culinaire des Îles de Guadeloupe — site web réalisé dans le cadre du BUT MMI." data-src="ctig.png" data-alt="Projet CTIG Saveurs"
+            data-link="ctig.html"
+            aria-label="Projet : CTIG Saveurs — double-clic pour visiter le site">
+            <img class="fan-img" src="ctig.png" alt="CTIG Saveurs" style="display:none" onload="this.style.display='block'" onerror="this.style.display='none'">
+            <div class="fan-img-placeholder"><i class="fas fa-utensils"></i><span>IMAGE À INSÉRER</span></div>
+            <div class="fan-body">
+                <span class="fan-tag">Projet</span>
+                <div class="fan-title">CTIG Saveurs</div>
+                <div class="fan-subtitle">Ateliers, dégustations & producteurs locaux labellisés</div>
+                <div class="fan-desc"></div>
+            </div>
+            <span class="fan-hint">CLIQUER ↗ · ×2 = SITE</span>
+        </article>
 
     </div>
 </section>
 
-<!-- MODAL IMAGE -->
-<div id="imgModal" style="display:none; position:fixed; z-index:999; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); text-align:center;">
-    
-    <span onclick="closeModal()" 
-          style="position:absolute; top:20px; right:35px; color:white; font-size:40px; cursor:pointer;">
-        &times;
-    </span>
-
-    <img id="modalImg" style="margin-top:50px; max-width:90%; max-height:90%;">
+<!-- ══ MODAL PROJET ══ -->
+<div class="proj-modal-backdrop" id="projModal" role="dialog" aria-modal="true" aria-label="Détail du projet">
+    <div class="proj-modal" id="projModalInner">
+        <div class="proj-modal-topbar">
+            <button class="proj-modal-back" id="projModalBack" onclick="closeProjModal()" aria-label="Retour aux projets">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Retour
+            </button>
+            <button class="proj-modal-close" onclick="closeProjModal()" aria-label="Fermer">&times;</button>
+        </div>
+        <div id="projModalMedia"></div>
+        <div class="proj-modal-body">
+            <span class="proj-modal-tag" id="projModalTag"></span>
+            <div class="proj-modal-title" id="projModalTitle"></div>
+            <div class="proj-modal-desc" id="projModalDesc"></div>
+            <a id="projModalLink" href="#" class="proj-modal-visit" style="display:none"
+               onclick="event.preventDefault(); window.location.href=this.dataset.target;">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Visiter le site
+            </a>
+        </div>
+    </div>
 </div>
 
-<!-- SCRIPT -->
 <script>
-function openModal(img) {
-    document.getElementById("imgModal").style.display = "block";
-    document.getElementById("modalImg").src = img.src;
-}
+(function(){
+    /* ── FAN LAYOUT ── */
+    const deck = document.getElementById('fanDeck');
+    const cards = Array.from(deck.querySelectorAll('.fan-card'));
+    const N = cards.length;
+    let focusedIdx = -1;
 
-function closeModal() {
-    document.getElementById("imgModal").style.display = "none";
-}
-
-document.getElementById("imgModal").onclick = function(e) {
-    if (e.target.id === "imgModal") {
-        closeModal();
+    function layout(hov){
+        const spread = 9, total = spread*(N-1), start = -total/2, liftBase = 30;
+        /* Plus d'espace horizontal entre cartes : 62px au lieu de 46 */
+        const gap = 85;
+        cards.forEach((c,i)=>{
+            const ang = start + i*spread;
+            const bx  = (i-(N-1)/2)*gap;
+            const by  = liftBase;
+            if(hov===i){
+                c.style.transform=`translateX(${bx}px) translateY(${by-110}px) rotate(0deg) scale(1.08)`;
+                c.style.zIndex=50; c.style.borderColor='var(--brand)';
+                c.style.boxShadow='0 20px 60px rgba(0,212,255,0.35),0 0 0 1px rgba(0,212,255,0.2)';
+            } else {
+                c.style.transform=`translateX(${bx}px) translateY(${by}px) rotate(${ang}deg)`;
+                c.style.zIndex=i; c.style.borderColor='var(--border)';
+                c.style.boxShadow='0 8px 24px rgba(0,0,0,0.4)';
+            }
+        });
     }
-}
+    layout(-1);
+
+    /* ── DOUBLE-CLIC → site externe ── */
+    const clickTimes = new Array(N).fill(0);
+    const DBLCLICK_MS = 400;
+
+    cards.forEach((c,i)=>{
+        c.setAttribute('tabindex','0');
+        c.setAttribute('role','button');
+
+        c.addEventListener('mouseenter',()=>{ layout(i); focusedIdx=i; });
+        c.addEventListener('mouseleave',()=>{ layout(-1); });
+
+        c.addEventListener('click',()=>{
+            const now = Date.now();
+            const link = c.dataset.link || '';
+            if(link && now - clickTimes[i] < DBLCLICK_MS){
+                /* double-clic → ouvre le site */
+                window.open(link,'_blank','noopener,noreferrer');
+                clickTimes[i] = 0;
+                return;
+            }
+            clickTimes[i] = now;
+            triggerBurst(c);
+            openProjModal(c);
+        });
+
+        /* ── Navigation clavier ── */
+        c.addEventListener('keydown', e=>{
+            if(e.key === 'Enter' || e.key === ' '){
+                e.preventDefault();
+                triggerBurst(c);
+                openProjModal(c);
+            }
+            if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+                e.preventDefault();
+                const next = (i+1) % N;
+                cards[next].focus();
+            }
+            if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+                e.preventDefault();
+                const prev = (i-1+N) % N;
+                cards[prev].focus();
+            }
+            if(e.key === 'Home'){ e.preventDefault(); cards[0].focus(); }
+            if(e.key === 'End'){  e.preventDefault(); cards[N-1].focus(); }
+        });
+
+        c.addEventListener('focus',()=>{ layout(i); focusedIdx=i; });
+        c.addEventListener('blur', ()=>{ layout(-1); focusedIdx=-1; });
+    });
+
+    deck.addEventListener('mouseleave',()=>layout(focusedIdx));
+
+    /* ── MODAL ── */
+    window.openProjModal = function(card){
+        const tag   = card.dataset.tag   || '';
+        const title = card.dataset.title || '';
+        const desc  = card.dataset.desc  || '';
+        const alt   = card.dataset.alt   || title;
+        const link  = card.dataset.link  || '';
+        const imgEl = card.querySelector('.fan-img');
+        const src   = card.dataset.src || (imgEl ? imgEl.getAttribute('src') : '') || '';
+
+        document.getElementById('projModalTag').textContent   = tag;
+        document.getElementById('projModalTitle').innerHTML   = title;
+        document.getElementById('projModalDesc').innerHTML    = desc || '<span style="opacity:0.4;font-family:\'Share Tech Mono\',monospace;font-size:0.75rem;letter-spacing:2px;">CONTENU À VENIR</span>';
+
+        const med = document.getElementById('projModalMedia');
+        med.innerHTML = src
+            ? `<img src="${src}" alt="${alt}">`
+            : `<div class="proj-modal-placeholder"><i class="fas fa-image"></i><span>IMAGE À INSÉRER</span></div>`;
+
+        const visitBtn = document.getElementById('projModalLink');
+        if(link){
+            /* Construit le chemin absolu depuis l'emplacement du fichier index.html */
+            const base = window.location.href.replace(/\/[^\/]*$/, '/');
+            const fullPath = base + link;
+            visitBtn.dataset.target = fullPath;
+            visitBtn.style.display = 'inline-flex';
+        } else {
+            visitBtn.style.display = 'none';
+        }
+
+        document.getElementById('projModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        /* focus sur le bouton retour */
+        setTimeout(()=>{ document.getElementById('projModalBack').focus(); }, 50);
+    };
+
+    window.closeProjModal = function(){
+        document.getElementById('projModal').classList.remove('open');
+        document.body.style.overflow = '';
+    };
+
+    document.getElementById('projModal').addEventListener('click',function(e){
+        if(e.target===this) closeProjModal();
+    });
+    document.addEventListener('keydown',e=>{
+        if(e.key==='Escape') closeProjModal();
+    });
+
+    /* ── Piège le focus dans la modale ── */
+    document.getElementById('projModalInner').addEventListener('keydown', e=>{
+        if(e.key !== 'Tab') return;
+        const focusable = document.getElementById('projModalInner')
+            .querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0], last = focusable[focusable.length-1];
+        if(e.shiftKey){ if(document.activeElement===first){ e.preventDefault(); last.focus(); } }
+        else          { if(document.activeElement===last) { e.preventDefault(); first.focus(); } }
+    });
+})();
 </script>
         <!-- ══ SECTION 4 — CONTACT ══ -->
         <section id="contact" class="reveal" aria-labelledby="contact-heading">
@@ -699,5 +1010,107 @@ document.getElementById("imgModal").onclick = function(e) {
         }
     });
     </script>
+
+<canvas id="burstCanvas" style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+<script>
+(function(){
+    const cvs = document.getElementById('burstCanvas');
+    const ctx = cvs.getContext('2d');
+    let particles = [], raf = null;
+
+    function resize(){ cvs.width=window.innerWidth; cvs.height=window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+
+    window.triggerBurst = function(card) {
+        if((card.dataset.fx||'default') !== 'elements') return;
+        const rect = card.getBoundingClientRect();
+        const cx = rect.left + rect.width  / 2;
+        const cy = rect.top  + rect.height / 2;
+        const earthP  = ['#8B4513','#A0522D','#6B4226','#D2691E','#4B3621','#7B5835'];
+        const stoneP  = ['#6B6560','#8B7D7B','#9E9085','#5A504B'];
+        const potatoP = ['#C8A95E','#D4B96A','#B89050','#E0C87A','#F0DCA0'];
+        const fryP    = ['#E8A030','#F0B040','#D49028','#FFCC55','#C87020'];
+        for(let i=0;i<90;i++){
+            const angle=Math.random()*Math.PI*2, speed=3.5+Math.random()*9, roll=Math.random();
+            let shape,palette;
+            if(roll<0.30){shape='rock';palette=stoneP;}
+            else if(roll<0.55){shape='clod';palette=earthP;}
+            else if(roll<0.75){shape='potato';palette=potatoP;}
+            else{shape='fry';palette=fryP;}
+            particles.push({
+                x:cx,y:cy,
+                vx:Math.cos(angle)*speed,
+                vy:Math.sin(angle)*speed-(1.5+Math.random()*4),
+                size:shape==='fry'?3+Math.random()*4:6+Math.random()*12,
+                fryLen:18+Math.random()*20,
+                color:palette[Math.floor(Math.random()*palette.length)],
+                shape,rot:Math.random()*Math.PI*2,spin:(Math.random()-0.5)*0.22,
+                life:1,decay:0.011+Math.random()*0.013
+            });
+        }
+        if(!raf) loop();
+    };
+
+    function drawRock(ctx,s){
+        ctx.beginPath();
+        for(let i=0;i<6;i++){
+            const a=(i/6)*Math.PI*2,r=s*(0.6+Math.random()*0.4);
+            i===0?ctx.moveTo(Math.cos(a)*r,Math.sin(a)*r):ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);
+        }
+        ctx.closePath();ctx.fill();
+        ctx.fillStyle='rgba(255,255,255,0.13)';
+        ctx.beginPath();ctx.ellipse(-s*0.15,-s*0.18,s*0.2,s*0.09,0.4,0,Math.PI*2);ctx.fill();
+    }
+    function drawClod(ctx,s){
+        ctx.beginPath();ctx.arc(0,0,s,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='rgba(0,0,0,0.22)';ctx.lineWidth=1.2;
+        ctx.beginPath();ctx.moveTo(-s*0.3,-s*0.4);ctx.lineTo(s*0.1,s*0.3);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(s*0.25,-s*0.5);ctx.lineTo(-s*0.05,s*0.15);ctx.stroke();
+    }
+    function drawPotato(ctx,s){
+        ctx.beginPath();
+        ctx.moveTo(s*0.05,-s);
+        ctx.bezierCurveTo(s*0.9,-s*0.85,s*1.05,s*0.2,s*0.6,s*0.85);
+        ctx.bezierCurveTo(s*0.15,s*1.1,-s*0.6,s*0.9,-s*0.8,s*0.4);
+        ctx.bezierCurveTo(-s*1.05,-s*0.3,-s*0.85,-s*0.9,s*0.05,-s);
+        ctx.closePath();ctx.fill();
+        ctx.fillStyle='rgba(0,0,0,0.2)';
+        ctx.beginPath();ctx.arc(-s*0.15,-s*0.25,s*0.11,0,Math.PI*2);ctx.fill();
+        ctx.beginPath();ctx.arc(s*0.35,s*0.1,s*0.08,0,Math.PI*2);ctx.fill();
+    }
+    function drawFry(ctx,w,h){
+        const r=w*0.4;
+        ctx.beginPath();
+        ctx.moveTo(-w+r,-h);ctx.lineTo(w-r,-h);ctx.quadraticCurveTo(w,-h,w,-h+r);
+        ctx.lineTo(w,h-r);ctx.quadraticCurveTo(w,h,w-r,h);
+        ctx.lineTo(-w+r,h);ctx.quadraticCurveTo(-w,h,-w,h-r);
+        ctx.lineTo(-w,-h+r);ctx.quadraticCurveTo(-w,-h,-w+r,-h);
+        ctx.closePath();ctx.fill();
+        ctx.fillStyle='rgba(255,255,200,0.28)';
+        ctx.fillRect(-w*0.5,-h*0.8,w*0.3,h*1.4);
+    }
+
+    function loop(){
+        ctx.clearRect(0,0,cvs.width,cvs.height);
+        particles=particles.filter(p=>p.life>0.01);
+        for(const p of particles){
+            p.x+=p.vx;p.y+=p.vy;p.vy+=0.26;p.vx*=0.983;
+            p.life-=p.decay;p.rot+=p.spin;
+            ctx.save();
+            ctx.globalAlpha=Math.min(1,p.life*1.5);
+            ctx.translate(p.x,p.y);ctx.rotate(p.rot);
+            ctx.fillStyle=p.color;
+            if(p.shape==='rock')drawRock(ctx,p.size);
+            else if(p.shape==='clod')drawClod(ctx,p.size);
+            else if(p.shape==='potato')drawPotato(ctx,p.size*0.8);
+            else if(p.shape==='fry')drawFry(ctx,p.size,p.fryLen/2);
+            ctx.restore();
+        }
+        if(particles.length>0)raf=requestAnimationFrame(loop);
+        else{raf=null;ctx.clearRect(0,0,cvs.width,cvs.height);}
+    }
+})();
+</script>
 </body>
 </html>
